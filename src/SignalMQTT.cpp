@@ -76,3 +76,7 @@ bool Signal::reconnect(){
 bool Signal::publishCoordinates(String coordinates){
     return _client->publish("device/coordinates", coordinates);
 }
+
+bool Signal::publishData(String variable, String data){
+    return _client->publish("device/"+variable, data);
+}

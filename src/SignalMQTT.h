@@ -41,6 +41,7 @@ class Signal {
     bool loop();
     bool reconnect();
     bool publishCoordinates(String coordinates);
+    bool publishData(String variable, String data);
 };
 
 #endif
