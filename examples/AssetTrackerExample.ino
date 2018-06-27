@@ -18,7 +18,7 @@ int delayMillis = 10000;
 AssetTracker t = AssetTracker();
 
 // Define a client connection name 'signal'
-Signal signal(TOKEN, callback);
+MySignal signal(TOKEN, callback);
 
 void callback(char* topic, uint8_t* payload, unsigned int length) {
     char p[length + 1];
