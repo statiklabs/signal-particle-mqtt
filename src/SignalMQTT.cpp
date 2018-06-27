@@ -24,7 +24,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "SignalMQTT.h"
 
 
-Signal::Signal(char* token, void (*callback)(char*,uint8_t*,unsigned int)){
+MySignal::MySignal(char* token, void (*callback)(char*,uint8_t*,unsigned int)){
     this->callback = callback;
     _token = token;
     _clientName = System.deviceID();
@@ -32,12 +32,12 @@ Signal::Signal(char* token, void (*callback)(char*,uint8_t*,unsigned int)){
 
 
 
-bool Signal::isConnected(){
+bool MySignal::isConnected(){
     return _client->isConnected();
 }
 
 
-bool Signal::connect(){
+bool MySignal::connect(){
     bool connected = false; 
     if(!_client->isConnected()){
         connected = reconnect();
@@ -45,7 +45,7 @@ bool Signal::connect(){
     return connected;
 }
 
-void Signal::initialize(){
+void MySignal::initialize(){
     this->_client = new MQTT("mqtt.mysignal.io", 1883, this->callback);
     _clientName = System.deviceID();
     _client->connect(_clientName, _token, NULL);
@@ -56,11 +56,11 @@ void Signal::initialize(){
 }
 
 
-bool Signal::loop(){
+bool MySignal::loop(){
     return _client->loop();
 }
 
-bool Signal::reconnect(){
+bool MySignal::reconnect(){
     if(!_client->isConnected()){
         Serial.println("attemping to connect");
     }
@@ -73,10 +73,10 @@ bool Signal::reconnect(){
 }
 
 
-bool Signal::publishCoordinates(String coordinates){
+bool MySignal::publishCoordinates(String coordinates){
     return _client->publish("device/coordinates", coordinates);
 }
 
-bool Signal::publishData(String variable, String data){
+bool MySignal::publishData(String variable, String data){
     return _client->publish("device/"+variable, data);
 }

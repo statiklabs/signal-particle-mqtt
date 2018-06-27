@@ -24,7 +24,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "MQTT.h"
 
-class Signal {
+class MySignal {
 
  private:
     void (*callback)(char*,uint8_t*,unsigned int);
@@ -34,7 +34,7 @@ class Signal {
     bool _debug = false;
 
  public:
-    Signal(char* token, void (*callback)(char*,uint8_t*,unsigned int));
+    MySignal(char* token, void (*callback)(char*,uint8_t*,unsigned int));
     bool connect();
     void initialize();
     bool isConnected();
